@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "scripts": {
   "ng": "ng",
-  "start": "npm run build && npm run serve:ssr:pnovahogar",
+  "start": "npm run serve:ssr:pnovahogar",
   "build": "ng build",
   "watch": "ng build --watch --configuration development",
   "test": "ng test",
   "serve:ssr:pnovahogar": "node dist/pnovahogar/server/server.mjs",
   "api": "node server/api.js"
-
-  },
+},
   "private": true,
   "packageManager": "npm@11.8.0",
   "dependencies": {
