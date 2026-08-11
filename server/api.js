@@ -104,6 +104,6 @@ app.get('/api/propiedades/:id', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`API de NovaHogar escuchando en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`API de NovaHogar escuchando en el puerto ${PORT}`);
 });
