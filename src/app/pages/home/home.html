@@ -1,0 +1,42 @@
+<div class="home-container">
+  <div class="home-card">
+    <h1>Bienvenido a NovaHogar</h1>
+
+    <p *ngIf="sesion">
+      Sesión iniciada como: <strong>{{ sesion.nombre }}</strong>
+    </p>
+    <p *ngIf="sesion">
+      Rol: <span class="badge" [class.badge-admin]="sesion.rol === 'admin'" [class.badge-user]="sesion.rol === 'usuario'">{{ sesion.rol }}</span>
+    </p>
+
+    <button *ngIf="sesion?.rol === 'admin'" (click)="irAdminPanel()" class="btn-admin">
+      Panel de administración
+    </button>
+    <a routerLink="/catalogo" class="btn-catalogo">Ver propiedades disponibles</a>
+    <button (click)="cerrarSesion()" class="btn-logout">Cerrar sesión</button>
+
+    <div class="privacidad-cuenta" *ngIf="sesion?.rol === 'usuario'">
+      <a routerLink="/aviso-privacidad" class="link-aviso">Ver Aviso de Privacidad</a>
+
+      <button (click)="mostrarConfirmacionBaja = true" class="btn-baja">
+        Revocar consentimiento y eliminar mi cuenta
+      </button>
+
+      <p class="mensaje-baja" *ngIf="mensajeBaja">{{ mensajeBaja }}</p>
+    </div>
+
+    <div class="modal-overlay" *ngIf="mostrarConfirmacionBaja">
+      <div class="modal-caja">
+        <h3>¿Seguro que quieres eliminar tu cuenta?</h3>
+        <p>
+          Dejarás de poder iniciar sesión de inmediato. Por obligación legal, tus datos
+          se conservarán bloqueados (sin uso) durante 5 años antes de eliminarse por completo.
+        </p>
+        <div class="modal-botones">
+          <button (click)="mostrarConfirmacionBaja = false" class="btn-cancelar">Cancelar</button>
+          <button (click)="confirmarBajaCuenta()" class="btn-confirmar-baja">Sí, dar de baja</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

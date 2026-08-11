@@ -1,0 +1,35 @@
+<p>panel-admin works!</p>
+<div class="panel-container">
+  <div class="panel-header">
+    <div>
+      <h1>Panel de Administración</h1>
+      <p class="subtitulo" *ngIf="sesion">Bienvenido, <strong>{{ sesion.nombre }}</strong></p>
+    </div>
+    <button class="btn-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">{{ totalUsuarios }}</span>
+      <span class="stat-label">Usuarios registrados</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ totalAdmins }}</span>
+      <span class="stat-label">Administradores</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ totalUsuarios - totalAdmins }}</span>
+      <span class="stat-label">Usuarios regulares</span>
+    </div>
+  </div>
+
+  <div class="acciones">
+    <div class="accion-card" (click)="irCatalogo()">
+      <div class="accion-icon">👥</div>
+      <div>
+        <strong>Catálogo de Usuarios</strong>
+        <p>Ver, administrar roles y eliminar cuentas.</p>
+      </div>
+    </div>
+  </div>
+</div>

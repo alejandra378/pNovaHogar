@@ -1,0 +1,153 @@
+.page-container {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 28px 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-volver {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #374151;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.btn-volver:hover { text-decoration: underline; }
+
+.estado { color: #6b7280; font-size: 14px; padding: 20px 0; }
+.estado-error { color: #dc2626; font-weight: 600; }
+
+.detalle-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+@media (max-width: 860px) {
+  .detalle-grid { grid-template-columns: 1fr; }
+}
+
+.carrusel {
+  position: relative;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.imagen-principal {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(17, 24, 39, 0.55);
+  color: white;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+.flecha:hover { background: rgba(17, 24, 39, 0.8); }
+.flecha-izq { left: 10px; }
+.flecha-der { right: 10px; }
+
+.badge-servicio {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #16a34a;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.badge-servicio.badge-renta { background: #1d4ed8; }
+
+.miniaturas {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.miniaturas img {
+  width: 70px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+.miniaturas img:hover { opacity: 0.85; }
+.miniaturas img.miniatura-activa {
+  opacity: 1;
+  border-color: #1d4ed8;
+}
+
+.mapa-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapa {
+  width: 100%;
+  flex: 1;
+  min-height: 260px;
+}
+
+.direccion-mapa {
+  margin: 0;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #374151;
+  border-top: 1px solid #f3f4f6;
+}
+
+.info-propiedad {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.info-propiedad h1 { margin: 0 0 6px; font-size: 24px; color: #111827; }
+.info-propiedad .ubicacion { margin: 0 0 10px; color: #6b7280; font-size: 14px; }
+.info-propiedad .precio { margin: 0 0 16px; font-size: 24px; font-weight: 700; color: #1d4ed8; }
+
+.info-propiedad .specs {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.info-propiedad h3 { margin: 20px 0 8px; font-size: 16px; color: #111827; }
+.info-propiedad h3:first-of-type { margin-top: 0; }
+.info-propiedad .descripcion { margin: 0; color: #374151; line-height: 1.6; font-size: 14px; }
+
+.lista-caracteristicas {
+  margin: 0;
+  padding-left: 20px;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.9;
+}

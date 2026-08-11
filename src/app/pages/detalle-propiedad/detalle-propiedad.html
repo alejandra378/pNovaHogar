@@ -1,0 +1,61 @@
+<div class="page-container">
+  <a routerLink="/catalogo" class="btn-volver">← Volver a propiedades</a>
+
+  <p class="estado" *ngIf="cargando">Cargando propiedad...</p>
+  <p class="estado estado-error" *ngIf="error">{{ error }}</p>
+
+  <div class="detalle-grid" *ngIf="propiedad && !cargando">
+    <div class="columna-izquierda">
+      <div class="carrusel">
+        <img [src]="propiedad.imagenes[imagenActual]" [alt]="propiedad.titulo" class="imagen-principal" />
+
+        <button class="flecha flecha-izq" (click)="imagenAnterior()" *ngIf="propiedad.imagenes.length > 1">‹</button>
+        <button class="flecha flecha-der" (click)="imagenSiguiente()" *ngIf="propiedad.imagenes.length > 1">›</button>
+
+        <span class="badge-servicio" [class.badge-renta]="propiedad.servicio === 'En renta'">{{ propiedad.servicio }}</span>
+      </div>
+
+      <div class="miniaturas" *ngIf="propiedad.imagenes.length > 1">
+        <img
+          *ngFor="let img of propiedad.imagenes; let i = index"
+          [src]="img"
+          [class.miniatura-activa]="i === imagenActual"
+          (click)="irAImagen(i)"
+        />
+      </div>
+    </div>
+
+    <div class="columna-derecha">
+      <div class="mapa-card">
+        <div id="mapa-propiedad" class="mapa"></div>
+        <p class="direccion-mapa">📍 {{ propiedad.ubicacion }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-propiedad" *ngIf="propiedad && !cargando">
+    <h1>{{ propiedad.titulo }}</h1>
+    <p class="ubicacion">📍 {{ propiedad.ubicacion }}</p>
+    <p class="precio">{{ formatearPrecio(propiedad.precio) }}</p>
+
+    <div class="specs" *ngIf="propiedad.tipo !== 'Terreno' && propiedad.tipo !== 'Local'">
+      <span>🛏 {{ propiedad.habitaciones }} recámaras</span>
+      <span>🛁 {{ propiedad.banos }} baños</span>
+      <span>🚗 {{ propiedad.estacionamientos }} estacionamientos</span>
+      <span>📐 {{ propiedad.m2 }} m²</span>
+    </div>
+    <div class="specs" *ngIf="propiedad.tipo === 'Terreno' || propiedad.tipo === 'Local'">
+      <span>📐 {{ propiedad.m2 }} m²</span>
+    </div>
+
+    <h3>Descripción</h3>
+    <p class="descripcion">{{ propiedad.descripcion }}</p>
+
+    <div *ngIf="propiedad.caracteristicas && propiedad.caracteristicas.length > 0">
+      <h3>Características</h3>
+      <ul class="lista-caracteristicas">
+        <li *ngFor="let c of propiedad.caracteristicas">{{ c }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

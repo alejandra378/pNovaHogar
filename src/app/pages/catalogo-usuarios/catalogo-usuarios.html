@@ -1,0 +1,56 @@
+<p>catalogo-usuarios works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-left">
+      <h1>Catálogo de Usuarios</h1>
+      <p class="subtitulo">Administración de cuentas y roles del sistema.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-secondary" (click)="volver()">← Panel Admin</button>
+      <button class="btn-danger-sm" (click)="cerrarSesion()">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <p class="msg-ok" *ngIf="mensaje">{{ mensaje }}</p>
+  <p class="msg-error" *ngIf="error">{{ error }}</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Rol</th>
+          <th>Intentos fallidos</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of usuarios" [class.fila-admin]="u.rol === 'admin'">
+          <td>{{ u.nombre }}</td>
+          <td>{{ u.email }}</td>
+          <td>
+            <span class="badge" [class.badge-admin]="u.rol === 'admin'" [class.badge-user]="u.rol === 'usuario'">
+              {{ u.rol }}
+            </span>
+          </td>
+          <td>{{ u.intentosFallidos }}</td>
+          <td>
+            <span *ngIf="estaBloqueado(u)" class="badge badge-bloq">Bloqueado</span>
+            <span *ngIf="!estaBloqueado(u)" class="badge badge-ok">Activo</span>
+          </td>
+          <td class="td-acciones">
+            <ng-container *ngIf="u.email !== sesionEmail">
+              <button class="btn-rol" *ngIf="u.rol === 'usuario'" (click)="cambiarRol(u.email, 'admin')">Hacer admin</button>
+              <button class="btn-rol" *ngIf="u.rol === 'admin'" (click)="cambiarRol(u.email, 'usuario')">Quitar admin</button>
+              <button class="btn-desbloquear" *ngIf="estaBloqueado(u)" (click)="desbloquear(u.email)">Desbloquear</button>
+              <button class="btn-eliminar" (click)="eliminar(u.email)">Eliminar</button>
+            </ng-container>
+            <span *ngIf="u.email === sesionEmail" class="tu-cuenta">(tú)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

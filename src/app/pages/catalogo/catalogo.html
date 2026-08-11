@@ -1,0 +1,52 @@
+<p>catalogo works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1>Propiedades Disponibles</h1>
+      <p class="subtitulo">Explora las propiedades publicadas en NovaHogar</p>
+    </div>
+    <a routerLink="/home" class="btn-secondary">Volver al inicio</a>
+  </div>
+
+  <div class="tabs">
+    <button
+      *ngFor="let f of filtros"
+      class="tab"
+      [class.tab-activo]="filtroActivo === f.valor"
+      (click)="cambiarFiltro(f.valor)"
+    >
+      <span class="tab-icono">{{ f.icono }}</span> {{ f.etiqueta }}
+    </button>
+  </div>
+
+  <p class="estado" *ngIf="cargando">Cargando propiedades...</p>
+  <p class="estado estado-error" *ngIf="error">{{ error }}</p>
+  <p class="estado" *ngIf="!cargando && !error && propiedades.length === 0">
+    No hay propiedades para este filtro.
+  </p>
+
+  <div class="grid-propiedades" *ngIf="!cargando && !error">
+    <div class="card-propiedad" *ngFor="let p of propiedades" (click)="verDetalle(p.id)">
+      <div class="imagen-wrapper">
+        <img [src]="p.imagenes[0]" [alt]="p.titulo" />
+        <span class="badge-servicio" [class.badge-renta]="p.servicio === 'En renta'">{{ p.servicio }}</span>
+      </div>
+      <div class="card-contenido">
+        <h3>{{ p.titulo }}</h3>
+        <p class="ubicacion">📍 {{ p.ubicacion }}</p>
+        <p class="precio">{{ formatearPrecio(p.precio) }}</p>
+
+        <div class="specs" *ngIf="p.tipo !== 'Terreno' && p.tipo !== 'Local'">
+          <span>🛏 {{ p.habitaciones }}</span>
+          <span>🛁 {{ p.banos }}</span>
+          <span>🚗 {{ p.estacionamientos }}</span>
+        </div>
+        <div class="specs" *ngIf="p.tipo === 'Terreno' || p.tipo === 'Local'">
+          <span>📐 {{ p.m2 }} m²</span>
+        </div>
+
+        <button class="btn-detalle" (click)="verDetalle(p.id); $event.stopPropagation()">Ver detalles</button>
+      </div>
+    </div>
+  </div>
+</div>

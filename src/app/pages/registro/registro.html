@@ -1,0 +1,78 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h1>Registro</h1>
+    <p class="subtitulo">Crea una cuenta para acceder a NovaHogar.</p>
+
+    <form (ngSubmit)="registrar()">
+      <label>Nombre</label>
+      <input
+        type="text"
+        name="nombre"
+        [(ngModel)]="nombre"
+        placeholder="Ingresa tu nombre"
+      />
+
+      <label>Correo electrónico</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="ejemplo@correo.com"
+      />
+
+      <label>Contraseña</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        (input)="actualizarErrores()"
+        placeholder="Ingresa una contraseña segura"
+      />
+
+      <div class="validaciones" *ngIf="password">
+        <p>Validaciones de contraseña:</p>
+
+        <ul *ngIf="erroresPassword.length > 0">
+          <li *ngFor="let error of erroresPassword">{{ error }}</li>
+        </ul>
+
+        <p class="correcto" *ngIf="erroresPassword.length === 0">
+          La contraseña cumple con los requisitos.
+        </p>
+      </div>
+
+      <label>Confirmar contraseña</label>
+      <input
+        type="password"
+        name="confirmarPassword"
+        [(ngModel)]="confirmarPassword"
+        placeholder="Repite la contraseña"
+      />
+
+      <label>CAPTCHA externo</label>
+      <div id="recaptchaRegistro" class="recaptcha-box"></div>
+
+      <div class="aviso-check">
+        <label class="check-label">
+          <input
+            type="checkbox"
+            name="aceptoAviso"
+            [(ngModel)]="aceptoAviso"
+          />
+          He leído y acepto el
+          <a routerLink="/aviso-privacidad" target="_blank">Aviso de Privacidad</a>
+        </label>
+      </div>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+
+      <button type="submit">Registrarme</button>
+    </form>
+
+    <p class="link">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Inicia sesión</a>
+    </p>
+  </div>
+</div>

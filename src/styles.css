@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.auth-container,
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  padding: 20px;
+}
+
+.auth-card,
+.home-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.home-card {
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 28px;
+}
+
+.subtitulo {
+  color: #6b7280;
+  margin-bottom: 22px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: 600;
+  color: #374151;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #111827;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #374151;
+}
+
+.validaciones {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  border: 1px solid #e5e7eb;
+}
+
+.validaciones p {
+  margin: 0 0 6px;
+}
+
+.validaciones ul {
+  margin: 6px 0 0 18px;
+  padding: 0;
+  color: #dc2626;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.mensaje,
+.correcto {
+  color: #16a34a;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.link {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.link a {
+  color: #111827;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+.recaptcha-box {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  min-height: 78px;
+}
+
+@media (max-width: 480px) {
+  .auth-card,
+  .home-card {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
